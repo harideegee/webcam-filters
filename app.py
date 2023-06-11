@@ -14,31 +14,35 @@ with st.expander("Open Webcam"):
 if capture is not None:
     filter = st.selectbox("Select filter.", ("Original", "Grayscale", "Blur", "Contour", "Detail", "Edge Enhance", "More Edge Enhance", "Emboss", "Outline", "Sharpen", "Smooth", "More Smooth"))
     img = Image.open(capture)
-    match filter:
-        case "Original":
-            image = img
-        case "Grayscale":
-            image = img.convert("L")
-        case "Blur":
-            image = img.filter(ImageFilter.BLUR)
-        case "Contour":
-            image = img.filter(ImageFilter.CONTOUR)
-        case "Detail":
-            image = img.filter(ImageFilter.DETAIL)
-        case "Edge Enhance":
-            image = img.filter(ImageFilter.EDGE_ENHANCE)
-        case "More Edge Enhance":
-            image = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
-        case "Emboss":
-            image = img.filter(ImageFilter.EMBOSS)
-        case "Outline":
-            image = img.filter(ImageFilter.FIND_EDGES)
-        case "Sharpen":
-            image = img.filter(ImageFilter.SHARPEN)
-        case "Smooth":
-            image = img.filter(ImageFilter.SMOOTH)
-        case "More Smooth":
-            image = img.filter(ImageFilter.SMOOTH_MORE)
+
+    if filter == "Original":
+        image = img
+    elif filter == "Grayscale":
+        image = img.convert("L")
+    elif filter == "Blur":
+        image = img.filter(ImageFilter.BLUR)
+    elif filter == "Contour":
+        image = img.filter(ImageFilter.CONTOUR)
+    elif filter == "Detail":
+        image = img.filter(ImageFilter.DETAIL)
+    elif filter == "Edge Enhance":
+        image = img.filter(ImageFilter.EDGE_ENHANCE)
+    elif filter == "More Edge Enhance":
+        image = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
+    elif filter == "Emboss":
+        image = img.filter(ImageFilter.EMBOSS)
+    elif filter == "Outline":
+        image = img.filter(ImageFilter.FIND_EDGES)
+    elif filter == "Sharpen":
+        image = img.filter(ImageFilter.SHARPEN)
+    elif filter == "Smooth":
+        image = img.filter(ImageFilter.SMOOTH)
+    elif filter == "More Smooth":
+        image = img.filter(ImageFilter.SMOOTH_MORE)
+    else:
+        pass
+
+
     st.image(image)
     
     image.save(buf, format="PNG")
